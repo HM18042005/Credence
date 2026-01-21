@@ -5,6 +5,11 @@ from sqlalchemy.orm import Session
 from app.models.models import BankTransaction, GSTCashflow
 
 
+# Constants for EMI calculation
+DEFAULT_INTEREST_RATE = 0.12  # 12% annual interest
+DEFAULT_TENURE_MONTHS = 12
+
+
 class FeatureEngineeringService:
     """Service for feature engineering from financial data"""
     
@@ -106,10 +111,9 @@ class FeatureEngineeringService:
         max_safe_emi = disposable_income * 0.4
         
         # If loan amount is provided, calculate actual EMI
-        # Assuming 12% annual interest and 12 month tenure
         if requested_loan:
-            monthly_interest = 0.12 / 12
-            n_months = 12
+            monthly_interest = DEFAULT_INTEREST_RATE / 12
+            n_months = DEFAULT_TENURE_MONTHS
             emi = requested_loan * monthly_interest * (1 + monthly_interest) ** n_months / \
                   ((1 + monthly_interest) ** n_months - 1)
             

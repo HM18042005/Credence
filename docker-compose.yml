@@ -23,6 +23,7 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://credence_user:credence_pass@postgres:5432/credence_db
+      # WARNING: Change these values in production!
       SECRET_KEY: your-secret-key-change-in-production
       DEBUG: "True"
     depends_on:
