@@ -96,7 +96,7 @@ class CreditAssessment(Base):
     
     # Metadata
     assessment_date = Column(DateTime, default=datetime.utcnow)
-    metadata = Column(JSON)  # Store additional assessment details
+    additional_data = Column(JSON)  # Store additional assessment details
     
     # Relationships
     msme = relationship("MSME", back_populates="credit_assessments")

@@ -187,7 +187,7 @@ def assess_loan_eligibility(request: LoanEligibilityRequest, db: Session = Depen
         max_loan_amount=max_loan,
         recommended_tenure_months=tenure,
         recommended_interest_rate=interest_rate,
-        metadata={
+        additional_data={
             "gst_trend": gst_trend,
             "requested_amount": request.requested_loan_amount
         }
