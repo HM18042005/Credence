@@ -122,11 +122,12 @@ class CreditAssessment(BaseModel):
     
     # Metadata
     assessed_at: datetime = Field(default_factory=datetime.utcnow)
-    model_version: str = "logistic_regression_v1"
+    ml_model_version: str = "logistic_regression_v1"
     
     model_config = ConfigDict(
         populate_by_name=True,
-        arbitrary_types_allowed=True
+        arbitrary_types_allowed=True,
+        protected_namespaces=()
     )
 
 
