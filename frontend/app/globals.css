@@ -1,64 +1,135 @@
 @import "tailwindcss";
 
-/* Dark FinTech Theme */
+/* Base Variables - Default to Light Mode */
 :root {
-  /* Primary Background */
-  --background: #0B0F14;
-  --foreground: #E5E7EB;
-  
-  /* Surface & Cards */
-  --surface: #141A22;
-  --border: #1F2937;
-  
-  /* Accents */
+  /* Light Mode Colors */
+  --background: #F8FAFC;
+  /* Slate 50 */
+  --foreground: #0F172A;
+  /* Slate 900 */
+
+  --surface: #FFFFFF;
+  --surface-hover: #F1F5F9;
+  /* Slate 100 */
+  --border: #E2E8F0;
+  /* Slate 200 */
+
+  --primary: #2563EB;
+  /* Blue 600 */
+  --primary-glow: rgba(37, 99, 235, 0.2);
+  --secondary: #7C3AED;
+  /* Violet 600 */
+  --accent: #0891B2;
+  /* Cyan 600 */
+
+  --positive: #059669;
+  /* Emerald 600 */
+  --warning: #D97706;
+  /* Amber 600 */
+  --danger: #DC2626;
+  /* Red 600 */
+
+  --text-primary: #0F172A;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Mode Overrides */
+.dark {
+  /* Primary Background - Deep Rich Dark Blue */
+  --background: #030712;
+  /* Very dark blue/gray */
+  --foreground: #F8FAFC;
+
+  /* Modern Surface Colors */
+  --surface: #0F172A;
+  /* Slate 900 */
+  --surface-hover: #1E293B;
+  /* Slate 800 */
+  --border: #1E293B;
+
+  /* Vibrant Accents */
   --primary: #3B82F6;
-  --primary-hover: #2563EB;
-  --positive: #22C55E;
+  /* Blue 500 */
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  --secondary: #8B5CF6;
+  /* Violet 500 */
+  --accent: #06B6D4;
+  /* Cyan 500 */
+
+  /* Status Colors (Vibrant) */
+  --positive: #10B981;
+  /* Emerald 500 */
   --warning: #F59E0B;
+  /* Amber 500 */
   --danger: #EF4444;
-  
-  /* Text Colors */
-  --text-primary: #E5E7EB;
-  --text-secondary: #9CA3AF;
-  --text-muted: #6B7280;
+  /* Red 500 */
+
+  /* Text Hierarchy */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  /* Slate 400 */
+  --text-muted: #64748B;
+  /* Slate 500 */
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 23, 42, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
   --color-border: var(--border);
   --color-primary: var(--primary);
-  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-positive: var(--positive);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --font-sans: system-ui, -apple-system, sans-serif;
+
+  --backdrop-blur-glass: 12px;
 }
 
 body {
   background: var(--background);
+  background-image:
+    radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08), transparent 25%);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Glassmorphism Utility Class */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--background);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border);
-  border-radius: 4px;
+  border-radius: 99px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

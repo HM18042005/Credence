@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Search, Bell } from 'lucide-react';
+import { Search, Bell, HelpCircle } from 'lucide-react';
+import Button from '@/components/shared/Button';
+import ThemeToggle from '@/components/shared/ThemeToggle';
 
 interface HeaderProps {
   title: string;
@@ -10,30 +12,41 @@ interface HeaderProps {
 
 export default function Header({ title, subtitle }: HeaderProps) {
   return (
-    <header className="bg-surface border-b border-border px-8 py-6">
+    <header className="sticky top-0 z-10 px-8 py-5 transition-all duration-200 backdrop-blur-md bg-background/50 border-b border-white/5">
       <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-bold text-text-primary">{title}</h1>
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent tracking-tight">{title}</h1>
           {subtitle && (
-            <p className="text-text-secondary mt-1">{subtitle}</p>
+            <p className="text-sm text-text-secondary mt-1 font-medium opacity-80">{subtitle}</p>
           )}
         </div>
-        
+
         <div className="flex items-center gap-4">
           {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted" size={18} />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="bg-background border border-border rounded-lg pl-10 pr-4 py-2 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:ring-2 focus:ring-primary"
-            />
+          <div className="relative group hidden md:block">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-full blur opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-surface/80 border border-border/50 rounded-full flex items-center px-4 py-2 w-64 focus-within:w-80 focus-within:border-primary/50 transition-all duration-300 shadow-sm hover:shadow-md">
+              <Search className="text-text-muted" size={16} />
+              <input
+                type="text"
+                placeholder="Search anything..."
+                className="bg-transparent border-none focus:ring-0 text-sm text-text-primary placeholder-text-muted w-full ml-3"
+              />
+            </div>
           </div>
-          
+
+          <div className="h-6 w-px bg-border/50 mx-2 hidden md:block"></div>
+
+          <ThemeToggle />
+
+          <button className="relative p-2.5 rounded-full hover:bg-surface hover:text-primary text-text-secondary transition-all duration-200">
+            <HelpCircle size={20} />
+          </button>
+
           {/* Notifications */}
-          <button className="relative p-2 hover:bg-background rounded-lg transition-colors">
-            <Bell size={20} className="text-text-secondary" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-danger rounded-full"></span>
+          <button className="relative p-2.5 rounded-full hover:bg-surface hover:text-primary text-text-secondary transition-all duration-200 group">
+            <Bell size={20} className="group-hover:animate-pulse" />
+            <span className="absolute top-2 right-2.5 w-2 h-2 bg-gradient-to-r from-danger to-orange-500 rounded-full shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
           </button>
         </div>
       </div>

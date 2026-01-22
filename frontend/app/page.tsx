@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { TrendingUp, Shield, Users, BarChart3 } from 'lucide-react';
+import ThemeToggle from '@/components/shared/ThemeToggle';
 
 export default function Home() {
   return (
@@ -8,19 +9,22 @@ export default function Home() {
       <header className="border-b border-border">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Credence</h1>
-          <nav className="flex gap-4">
-            <Link 
-              href="/borrower/dashboard" 
+          <nav className="flex gap-4 items-center">
+            <Link
+              href="/borrower/dashboard"
               className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors"
             >
               Borrower Portal
             </Link>
-            <Link 
-              href="/lender/dashboard" 
+            <Link
+              href="/lender/dashboard"
               className="px-4 py-2 rounded-lg border border-border hover:bg-surface transition-colors text-text-primary"
             >
               Lender Portal
             </Link>
+            <div className="pl-2 border-l border-border flex items-center">
+              <ThemeToggle />
+            </div>
           </nav>
         </div>
       </header>
@@ -31,17 +35,17 @@ export default function Home() {
           Consent-Driven Credit Intelligence
         </h1>
         <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-12">
-          Empowering lenders with data-driven credit decisions and borrowers with 
+          Empowering lenders with data-driven credit decisions and borrowers with
           transparent, explainable credit assessments using consented financial data.
         </p>
         <div className="flex gap-4 justify-center">
-          <Link 
+          <Link
             href="/borrower/dashboard"
             className="px-8 py-4 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors text-lg font-semibold"
           >
             Get Your Credit Score
           </Link>
-          <Link 
+          <Link
             href="/lender/dashboard"
             className="px-8 py-4 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
           >
