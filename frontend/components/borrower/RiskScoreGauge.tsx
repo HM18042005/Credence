@@ -42,7 +42,7 @@ export default function RiskScoreGauge({ score, riskBucket }: RiskScoreGaugeProp
         </PieChart>
       </ResponsiveContainer>
       
-      {/* Score Display */}
+      {/* Score Display - positioned in center of gauge */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/4 text-center">
         <div className="text-4xl font-bold text-text-primary">{score.toFixed(0)}</div>
         <div className="text-sm text-text-secondary mt-1">Risk Score</div>

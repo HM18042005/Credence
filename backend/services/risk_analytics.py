@@ -35,13 +35,14 @@ class RiskAnalyticsService:
         self.model = LogisticRegression()
         
         # Set pre-defined coefficients for demo
-        # Positive coefficients = lower risk, Negative = higher risk
+        # In logistic regression, positive coefficients increase probability of positive class (default)
+        # Negative coefficients decrease probability of default (reduce risk)
         self.model.coef_ = np.array([[
-            0.3,   # average_monthly_inflow (higher = better)
-            0.4,   # income_stability_score (higher = better)
-            -0.5,  # cash_flow_volatility (higher = worse)
-            0.35,  # emi_affordability_ratio (higher = better)
-            -0.4   # expense_to_income_ratio (higher = worse)
+            -0.3,  # average_monthly_inflow (higher income = lower default risk, negative coeff)
+            -0.4,  # income_stability_score (higher stability = lower default risk)
+            0.5,   # cash_flow_volatility (higher volatility = higher default risk, positive coeff)
+            -0.35, # emi_affordability_ratio (higher affordability = lower default risk)
+            0.4    # expense_to_income_ratio (higher ratio = higher default risk)
         ]])
         self.model.intercept_ = np.array([0.1])
         self.model.classes_ = np.array([0, 1])
