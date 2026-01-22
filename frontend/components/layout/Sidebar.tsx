@@ -15,7 +15,7 @@ import {
 import { motion } from 'framer-motion';
 
 interface SidebarProps {
-  role: 'borrower' | 'lender';
+  readonly role: 'borrower' | 'lender';
 }
 
 export default function Sidebar({ role }: SidebarProps) {
@@ -74,8 +74,8 @@ export default function Sidebar({ role }: SidebarProps) {
                 />
               )}
               <div className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all relative z-10 ${isActive
-                  ? 'text-primary font-semibold'
-                  : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover/50'
+                ? 'text-primary font-semibold'
+                : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover/50'
                 }`}>
                 <Icon size={20} className={isActive ? "text-primary stroke-[2.5px]" : "stroke-[1.5px]"} />
                 <span className="text-sm">{link.label}</span>

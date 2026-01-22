@@ -4,9 +4,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  title?: string;
+  readonly children: React.ReactNode;
+  readonly className?: string;
+  readonly title?: string;
 }
 
 export default function Card({ children, className = '', title }: CardProps) {

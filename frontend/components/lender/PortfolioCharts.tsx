@@ -1,18 +1,18 @@
 'use client';
 
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import Card from '../shared/Card';
 
 interface RiskDistribution {
-  low: number;
-  medium: number;
-  high: number;
+  readonly low: number;
+  readonly medium: number;
+  readonly high: number;
 }
 
 interface PortfolioChartsProps {
-  riskDistribution: RiskDistribution;
-  totalAssessments: number;
+  readonly riskDistribution: RiskDistribution;
+  readonly totalAssessments: number;
 }
 
 export default function PortfolioCharts({ riskDistribution, totalAssessments }: PortfolioChartsProps) {
@@ -21,25 +21,25 @@ export default function PortfolioCharts({ riskDistribution, totalAssessments }: 
     { name: 'Medium Risk', count: riskDistribution.medium, fill: '#F59E0B' },
     { name: 'High Risk', count: riskDistribution.high, fill: '#EF4444' },
   ];
-  
+
   return (
     <Card title="Risk Distribution">
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#1F2937" />
-            <XAxis 
-              dataKey="name" 
+            <XAxis
+              dataKey="name"
               stroke="#9CA3AF"
               style={{ fontSize: '12px' }}
             />
-            <YAxis 
+            <YAxis
               stroke="#9CA3AF"
               style={{ fontSize: '12px' }}
             />
-            <Tooltip 
-              contentStyle={{ 
-                backgroundColor: '#141A22', 
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#141A22',
                 border: '1px solid #1F2937',
                 borderRadius: '8px',
                 color: '#E5E7EB'
@@ -49,7 +49,7 @@ export default function PortfolioCharts({ riskDistribution, totalAssessments }: 
           </BarChart>
         </ResponsiveContainer>
       </div>
-      
+
       <div className="mt-4 pt-4 border-t border-border">
         <p className="text-sm text-text-secondary">
           Total Assessments: <span className="font-semibold text-text-primary">{totalAssessments}</span>

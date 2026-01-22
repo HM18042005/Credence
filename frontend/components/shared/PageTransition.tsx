@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface PageTransitionProps {
-    children: ReactNode;
-    className?: string;
+    readonly children: ReactNode;
+    readonly className?: string;
 }
 
 export default function PageTransition({ children, className = '' }: PageTransitionProps) {

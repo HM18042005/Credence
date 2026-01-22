@@ -3,12 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import RiskBadge from '../shared/RiskBadge';
-import { formatDate } from '@/utils/formatters';
-import { getDecisionLabel, getDecisionColor } from '@/utils/formatters';
+import { formatDate, getDecisionLabel, getDecisionColor } from '@/utils/formatters';
 import { BorrowerListItem } from '@/lib/types';
 
 interface BorrowerTableProps {
-  borrowers: BorrowerListItem[];
+  readonly borrowers: BorrowerListItem[];
 }
 
 export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
@@ -19,7 +18,7 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
       </div>
     );
   }
-  
+
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
@@ -36,8 +35,8 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
         </thead>
         <tbody>
           {borrowers.map((borrower) => (
-            <tr 
-              key={borrower.user_id} 
+            <tr
+              key={borrower.user_id}
               className="border-b border-border hover:bg-surface/50 transition-colors"
             >
               <td className="py-4 px-4">
@@ -69,13 +68,13 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
                 )}
               </td>
               <td className="py-4 px-4 text-text-secondary text-sm">
-                {borrower.latest_assessment?.assessed_at 
+                {borrower.latest_assessment?.assessed_at
                   ? formatDate(borrower.latest_assessment.assessed_at)
                   : '-'
                 }
               </td>
               <td className="py-4 px-4">
-                <Link 
+                <Link
                   href={`/lender/borrower/${borrower.user_id}`}
                   className="text-primary hover:text-primary-hover font-medium text-sm"
                 >

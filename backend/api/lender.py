@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, status, Query
 from pydantic import BaseModel
 from typing import List, Optional
-from datetime import datetime
+from datetime import datetime, timezone
 from models import User, UserRole, DecisionStatus, RiskBucket
 from core import db
 
@@ -176,7 +176,7 @@ async def override_decision(override: DecisionOverride):
         "decision_status": override.new_decision.value,
         "analyst_notes": override.analyst_notes,
         "manual_override": True,
-        "override_timestamp": datetime.utcnow()
+        "override_timestamp": datetime.now(timezone.utc)
     }
     
     if override.credit_limit_override:

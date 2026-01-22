@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, HTMLMotionProps } from 'framer-motion';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  children: React.ReactNode;
+interface ButtonProps extends HTMLMotionProps<"button"> {
+  readonly variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
+  readonly size?: 'sm' | 'md' | 'lg';
+  readonly children: React.ReactNode;
 }
 
 export default function Button({

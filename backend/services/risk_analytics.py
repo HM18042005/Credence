@@ -156,15 +156,13 @@ class RiskAnalyticsService:
     
     def generate_explanations(
         self, 
-        metrics: FinancialMetrics, 
-        risk_score: float
+        metrics: FinancialMetrics
     ) -> Tuple[List[str], List[str], Dict[str, float]]:
         """
         Generate explainable insights for the credit decision.
         
         Args:
             metrics: Financial metrics
-            risk_score: Calculated risk score
             
         Returns:
             Tuple of (positive_factors, risk_factors, feature_contributions)

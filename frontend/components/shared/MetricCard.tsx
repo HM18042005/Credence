@@ -4,14 +4,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 interface MetricCardProps {
-  label: string;
-  value: string | number;
-  icon?: React.ReactNode;
-  trend?: {
-    value: number;
-    isPositive: boolean;
+  readonly label: string;
+  readonly value: string | number;
+  readonly icon?: React.ReactNode;
+  readonly trend?: {
+    readonly value: number;
+    readonly isPositive: boolean;
   };
-  className?: string;
+  readonly className?: string;
 }
 
 export default function MetricCard({

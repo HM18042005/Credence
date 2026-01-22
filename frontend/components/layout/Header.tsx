@@ -2,12 +2,11 @@
 
 import React from 'react';
 import { Search, Bell, HelpCircle } from 'lucide-react';
-import Button from '@/components/shared/Button';
 import ThemeToggle from '@/components/shared/ThemeToggle';
 
 interface HeaderProps {
-  title: string;
-  subtitle?: string;
+  readonly title: string;
+  readonly subtitle?: string;
 }
 
 export default function Header({ title, subtitle }: HeaderProps) {

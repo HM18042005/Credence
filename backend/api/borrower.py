@@ -6,6 +6,8 @@ from models import User, UserRole, FinancialStatement, CreditAssessment, Decisio
 from services import risk_analytics_service
 from core import db
 
+USER_NOT_FOUND = "User not found"
+
 router = APIRouter(prefix="/borrower", tags=["Borrower"])
 
 
@@ -81,7 +83,7 @@ async def upload_financial_data(upload: FinancialDataUpload, user_id: str):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
+            detail=USER_NOT_FOUND
         )
     
     # Store financial data
@@ -122,7 +124,7 @@ async def assess_credit(request: AssessmentRequest):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
+            detail=USER_NOT_FOUND
         )
     
     # Compute financial metrics
@@ -133,7 +135,7 @@ async def assess_credit(request: AssessmentRequest):
     
     # Generate explanations
     positive_factors, risk_factors, contributions = risk_analytics_service.generate_explanations(
-        metrics, risk_score
+        metrics
     )
     
     # Apply policy rules
@@ -218,7 +220,7 @@ async def get_borrower_profile(user_id: str):
     if not user:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
+            detail=USER_NOT_FOUND
         )
     
     user["id"] = str(user.pop("_id"))

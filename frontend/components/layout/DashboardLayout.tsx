@@ -6,10 +6,10 @@ import Header from './Header';
 import PageTransition from '@/components/shared/PageTransition';
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
-  role: 'borrower' | 'lender';
-  title: string;
-  subtitle?: string;
+  readonly children: React.ReactNode;
+  readonly role: 'borrower' | 'lender';
+  readonly title: string;
+  readonly subtitle?: string;
 }
 
 export default function DashboardLayout({
