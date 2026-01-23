@@ -24,13 +24,13 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
       <table className="w-full">
         <thead>
           <tr className="border-b border-border">
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Name</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Business</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Category</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Risk</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Status</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Assessed</th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-text-secondary">Actions</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Name</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Business</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Category</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Risk</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Status</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Assessed</th>
+            <th className="text-left py-3 px-2 md:px-4 text-sm font-semibold text-text-secondary">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -39,26 +39,26 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
               key={borrower.user_id}
               className="border-b border-border hover:bg-surface/50 transition-colors"
             >
-              <td className="py-4 px-4">
+              <td className="py-4 px-2 md:px-4">
                 <div>
                   <p className="font-medium text-text-primary">{borrower.name}</p>
                   <p className="text-sm text-text-muted">{borrower.email}</p>
                 </div>
               </td>
-              <td className="py-4 px-4 text-text-secondary">
+              <td className="py-4 px-2 md:px-4 text-text-secondary">
                 {borrower.business_name || '-'}
               </td>
-              <td className="py-4 px-4 text-text-secondary">
+              <td className="py-4 px-2 md:px-4 text-text-secondary">
                 {borrower.business_category || '-'}
               </td>
-              <td className="py-4 px-4">
+              <td className="py-4 px-2 md:px-4">
                 {borrower.latest_assessment?.risk_bucket ? (
                   <RiskBadge risk={borrower.latest_assessment.risk_bucket} size="sm" />
                 ) : (
                   <span className="text-text-muted">-</span>
                 )}
               </td>
-              <td className="py-4 px-4">
+              <td className="py-4 px-2 md:px-4">
                 {borrower.latest_assessment?.decision_status ? (
                   <span className={`font-medium ${getDecisionColor(borrower.latest_assessment.decision_status)}`}>
                     {getDecisionLabel(borrower.latest_assessment.decision_status)}
@@ -67,13 +67,13 @@ export default function BorrowerTable({ borrowers }: BorrowerTableProps) {
                   <span className="text-text-muted">-</span>
                 )}
               </td>
-              <td className="py-4 px-4 text-text-secondary text-sm">
+              <td className="py-4 px-2 md:px-4 text-text-secondary text-sm">
                 {borrower.latest_assessment?.assessed_at
                   ? formatDate(borrower.latest_assessment.assessed_at)
                   : '-'
                 }
               </td>
-              <td className="py-4 px-4">
+              <td className="py-4 px-2 md:px-4">
                 <Link
                   href={`/lender/borrower/${borrower.user_id}`}
                   className="text-primary hover:text-primary-hover font-medium text-sm"

@@ -18,6 +18,8 @@ export default function DashboardLayout({
   title,
   subtitle
 }: DashboardLayoutProps) {
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+
   // Determine gradient based on role for subtle personalization
   const gradientOverlay = role === 'borrower'
     ? 'fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent z-0'
@@ -27,12 +29,28 @@ export default function DashboardLayout({
     <div className="flex min-h-screen bg-transparent relative overflow-hidden">
       <div className={gradientOverlay} />
 
-      <Sidebar role={role} />
+      {/* Mobile Sidebar Overlay */}
+      {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-30 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
 
-      <div className="flex-1 ml-64 z-10 flex flex-col min-h-screen">
-        <Header title={title} subtitle={subtitle} />
+      <Sidebar
+        role={role}
+        isOpen={isSidebarOpen}
+        onClose={() => setIsSidebarOpen(false)}
+      />
 
-        <main className="flex-1 p-8 overflow-y-auto">
+      <div className="flex-1 md:ml-64 z-10 flex flex-col min-h-screen w-full transition-all duration-300">
+        <Header
+          title={title}
+          subtitle={subtitle}
+          onMenuClick={() => setIsSidebarOpen(true)}
+        />
+
+        <main className="flex-1 p-4 md:p-8 overflow-y-auto w-full">
           <PageTransition>
             {children}
           </PageTransition>

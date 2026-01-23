@@ -7,18 +7,18 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold text-primary">Credence</h1>
-          <nav className="flex gap-4 items-center">
+        <div className="container mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+          <Link href="/" className="text-2xl font-bold text-primary">Credence</Link>
+          <nav className="flex flex-wrap gap-4 items-center justify-center">
             <Link
               href="/borrower/dashboard"
-              className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors"
+              className="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors text-sm md:text-base"
             >
               Borrower Portal
             </Link>
             <Link
               href="/lender/dashboard"
-              className="px-4 py-2 rounded-lg border border-border hover:bg-surface transition-colors text-text-primary"
+              className="px-4 py-2 rounded-lg border border-border hover:bg-surface transition-colors text-text-primary text-sm md:text-base"
             >
               Lender Portal
             </Link>
@@ -30,24 +30,24 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-6 py-20 text-center">
-        <h1 className="text-5xl font-bold text-text-primary mb-6">
+      <section className="container mx-auto px-6 py-12 md:py-20 text-center">
+        <h1 className="text-3xl md:text-5xl font-bold text-text-primary mb-6 leading-tight">
           Consent-Driven Credit Intelligence
         </h1>
-        <p className="text-xl text-text-secondary max-w-3xl mx-auto mb-12">
+        <p className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto mb-8 md:mb-12">
           Empowering lenders with data-driven credit decisions and borrowers with
           transparent, explainable credit assessments using consented financial data.
         </p>
-        <div className="flex gap-4 justify-center">
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
           <Link
             href="/borrower/dashboard"
-            className="px-8 py-4 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors text-lg font-semibold"
+            className="px-8 py-4 rounded-lg bg-primary text-white hover:bg-primary-hover transition-colors text-lg font-semibold w-full md:w-auto"
           >
             Get Your Credit Score
           </Link>
           <Link
             href="/lender/dashboard"
-            className="px-8 py-4 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors text-lg font-semibold"
+            className="px-8 py-4 rounded-lg border-2 border-primary text-primary hover:bg-primary hover:text-white transition-colors text-lg font-semibold w-full md:w-auto"
           >
             Lender Dashboard
           </Link>
@@ -55,8 +55,8 @@ export default function Home() {
       </section>
 
       {/* Features */}
-      <section className="container mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <section className="container mx-auto px-6 py-12 md:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           <div className="bg-surface border border-border rounded-xl p-6 text-center">
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
               <Shield className="text-primary" size={32} />
