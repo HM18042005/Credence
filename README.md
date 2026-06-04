@@ -1,93 +1,152 @@
 # Credence - Consent-Driven Credit Intelligence Platform
 
-Credence is a full-stack platform for transparent, explainable credit decisioning for MSMEs using consented financial data.
+Consent-driven credit intelligence platform for transparent, explainable credit decisioning for MSMEs using consented financial data.
 
-## Current Project State
+## What this repository contains
 
-The repository is currently organized as an end-to-end monorepo with:
-- **Backend**: FastAPI + MongoDB services for borrower/lender workflows and risk analytics
-- **Frontend**: Next.js 14 + TypeScript dashboards for borrowers and lenders
-- **Project Documentation**: Architecture, setup, security, PRD, and technology docs at repository root
+- Full-stack monorepo with a FastAPI backend and Next.js frontend
+- Risk analytics service with explainable scoring and policy rules
+- Borrower and lender dashboards with portfolio analytics
+- Production-style documentation and setup guides at the repo root
 
-## Repository Snapshot
+## Architecture
 
-### Root-level modules
-- `backend/` — backend APIs, models, services, configuration
-- `frontend/` — web application (App Router), components, shared UI, API integration
-- `.github/` — repository automation/configuration
+See ARCHITECTURE.md for the full system and data-flow diagrams.
 
-### Core root documentation
-- `ARCHITECTURE.md`
-- `PROJECT_SUMMARY.md`
-- `SETUP_GUIDE.md`
-- `SECURITY.md`
-- `consent_driven_credit_intelligence_platform_prd.md`
-- `design_document_consent_driven_credit_intelligence_platform.md`
-- `technical_architecture_stack_document_credit_intelligence_platform.md`
-- `technology_stack_risk_modeling_document_credit_intelligence_platform.md`
+## Tech stack
 
-## High-Level Architecture
+Backend
+- FastAPI, Pydantic, Uvicorn
+- MongoDB with Motor
+- Scikit-learn, NumPy, Pandas
 
-### Backend (FastAPI)
-- API routes for borrower and lender flows
-- Business services for scoring and analytics
-- MongoDB-backed data storage
-- Config-driven setup with environment variables
+Frontend
+- Next.js 16 (App Router), React 19
+- TypeScript, Tailwind CSS 4
+- Recharts, Lucide React, Framer Motion
 
-### Frontend (Next.js)
-- Borrower and lender dashboards
-- Reusable components and typed API integration
-- Tailwind-based dark FinTech UI
+## Repository layout
 
-## Technology Mix (Current)
+```
+Credence/
+	backend/              FastAPI API, models, services, config
+	frontend/             Next.js app, UI components, utilities
+	ARCHITECTURE.md       System architecture and data flow
+	PROJECT_SUMMARY.md    Project overview and feature summary
+	SETUP_GUIDE.md        Detailed setup and usage instructions
+	SECURITY.md           Security guidance
+```
 
-- TypeScript: **60.5%**
-- Python: **34.9%**
-- CSS: **2.9%**
-- Other: **1.7%**
+## Quick start
 
-## Run Locally
+Prerequisites
+- Python 3.9+
+- Node.js 18+
+- MongoDB (local or Docker)
 
-### Backend
+Backend
 ```bash
 cd backend
 pip install -r requirements.txt
 cp .env.example .env
+# Windows PowerShell: Copy-Item .env.example .env
 python main.py
 ```
 
-Backend default URL: `http://localhost:8000`
-
-### Frontend
+Frontend
 ```bash
 cd frontend
 npm install
-cp .env.local.example .env.local
+echo NEXT_PUBLIC_API_URL=http://localhost:8000 > .env.local
 npm run dev
 ```
 
-Frontend default URL: `http://localhost:3000`
+Default URLs
+- Backend: http://localhost:8000
+- Frontend: http://localhost:3000
 
-## Available APIs (summary)
+## Environment variables
 
-### Borrower
-- `POST /api/v1/borrower/profile`
-- `POST /api/v1/borrower/financial-data`
-- `POST /api/v1/borrower/assess-credit`
-- `GET /api/v1/borrower/assessments/{user_id}`
+Backend (.env)
+```ini
+MONGODB_URL=mongodb://localhost:27017
+DATABASE_NAME=credence_db
+API_HOST=0.0.0.0
+API_PORT=8000
+DEBUG=True
+SECRET_KEY=your-secret-key-here-change-in-production
+ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+CORS_ORIGINS=http://localhost:3000,http://localhost:3001
+```
 
-### Lender
-- `POST /api/v1/lender/profile`
-- `GET /api/v1/lender/borrowers`
-- `GET /api/v1/lender/borrower/{user_id}`
-- `POST /api/v1/lender/decision/override`
-- `GET /api/v1/lender/portfolio/analytics`
+Frontend (.env.local)
+```ini
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
 
-## Notes
+## Docker
 
-- This project is structured as a production-style demonstration platform.
-- For deeper setup and architecture details, refer to the root documentation files listed above.
+```bash
+docker-compose up --build
+```
 
----
+Services
+- Backend: http://localhost:8000
+- Frontend: http://localhost:3000
+- MongoDB: mongodb://localhost:27017
 
-**Status as of 2026-04-07: Repository includes working backend/frontend modules and comprehensive architecture/setup documentation.**
+## API endpoints
+
+Borrower
+- POST /api/v1/borrower/profile
+- POST /api/v1/borrower/financial-data
+- POST /api/v1/borrower/assess-credit
+- GET /api/v1/borrower/assessments/{user_id}
+
+Lender
+- POST /api/v1/lender/profile
+- GET /api/v1/lender/borrowers
+- GET /api/v1/lender/borrower/{user_id}
+- POST /api/v1/lender/decision/override
+- GET /api/v1/lender/portfolio/analytics
+
+API docs
+- Swagger UI: http://localhost:8000/docs
+- ReDoc: http://localhost:8000/redoc
+
+## Testing and quality
+
+Backend
+```bash
+python -m pytest backend
+python -m ruff check backend
+```
+
+Frontend
+```bash
+cd frontend
+npm test
+npm run lint
+```
+
+## Makefile targets
+
+If you use Make on your system, these helpers are available:
+- make install
+- make test
+- make run-dev
+- make docker-build
+- make docker-up
+- make clean
+
+## Documentation
+
+- ARCHITECTURE.md
+- PROJECT_SUMMARY.md
+- SETUP_GUIDE.md
+- SECURITY.md
+- consent_driven_credit_intelligence_platform_prd.md
+- design_document_consent_driven_credit_intelligence_platform.md
+- technical_architecture_stack_document_credit_intelligence_platform.md
+- technology_stack_risk_modeling_document_credit_intelligence_platform.md
